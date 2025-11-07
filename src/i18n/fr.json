@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "team": "Équipe",
+    "contact": "Contact",
+    "language": "Langue"
+  },
+  "common": {
+    "getStarted": "Commencer",
+    "readMore": "Lire plus",
+    "contactUs": "Nous contacter"
+  },
+  "footer": {
+    "copyright": "© 2025 AiDev Team. Tous droits réservés.",
+    "contactEmail": "Contactez-nous à : contact@davnstech.com"
+  }
+}
