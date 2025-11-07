@@ -1,19 +1,82 @@
 {
-  "nav": {
+  "header": {
+    "logo": "AiTeamDev",
     "home": "Accueil",
     "about": "À propos",
     "services": "Services",
-    "team": "Équipe",
-    "contact": "Contact",
-    "language": "Langue"
+    "contact": "Contact"
   },
-  "common": {
-    "getStarted": "Commencer",
-    "readMore": "Lire plus",
-    "contactUs": "Nous contacter"
+  "hero": {
+    "title": "Bienvenue chez AiTeamDev",
+    "subtitle": "Votre équipe de développement propulsée par l'IA pour les entreprises modernes",
+    "description": "Des solutions économiques de 1 à 3 $ avec des résultats de haute qualité",
+    "button": "Commencer"
+  },
+  "services": {
+    "title": "Nos Services",
+    "website": {
+      "title": "Création de Sites Web",
+      "description": "Sites Web professionnels adaptés à vos besoins, conçus avec des technologies modernes et axés sur l'expérience utilisateur."
+    },
+    "software": {
+      "title": "Développement Logiciel",
+      "description": "Solutions logicielles personnalisées développées par notre équipe assistée par IA, conçues pour rationaliser vos opérations."
+    },
+    "game": {
+      "title": "Développement de Jeux",
+      "description": "Jeux innovants et engageants conçus pour les plateformes modernes, du mobile au bureau, avec un souci de qualité."
+    },
+    "app": {
+      "title": "Développement d'Applications",
+      "description": "Applications mobiles natives et multiplateformes utilisant des technologies de pointe pour engager vos utilisateurs."
+    },
+    "saas": {
+      "title": "Solutions SAAS",
+      "description": "Solutions logicielles évolutives basées sur le cloud adaptées à vos besoins avec des modèles d'abonnement."
+    },
+    "ai": {
+      "title": "Intégration IA",
+      "description": "Intégrez les capacités de l'IA dans vos systèmes existants pour améliorer l'automatisation et l'analyse."
+    }
+  },
+  "about": {
+    "title": "À Propos de Nous",
+    "description1": "AiTeamDev est une entreprise de développement de pointe utilisant la puissance de l'IA pour offrir des solutions innovantes. Nous nous spécialisons dans la création de sites Web professionnels, de logiciels personnalisés et de jeux engageants.",
+    "description2": "Fondée par une équipe de spécialistes en IA, nous réunissons design créatif et expertise technique pour offrir des résultats exceptionnels.",
+    "mission": {
+      "title": "Notre Mission",
+      "description": "Démocratiser l'accès à des services de développement de haute qualité grâce à des solutions assistées par IA à la fois abordables et efficaces."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Devenir le principal fournisseur de services de développement assistés par IA pour les entreprises de toutes tailles."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "description": "L'innovation, la qualité, l'efficacité et la satisfaction client sont au cœur de tout ce que nous faisons."
+    }
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "description1": "Vous avez un projet en tête ? Nous aimerions avoir de vos nouvelles.",
+    "description2": "Notre équipe IA est prête à vous aider dans vos besoins de développement dans les limites de votre budget.",
+    "email": {
+      "title": "Email",
+      "description": "contact@davnstech.com"
+    },
+    "inquiry": {
+      "title": "Demande de Projet",
+      "description": "Prêt à démarrer votre projet ? Contactez-nous pour une consultation gratuite."
+    },
+    "support": {
+      "title": "Support",
+      "description": "Les clients existants peuvent contacter notre équipe de support pour obtenir de l'aide."
+    },
+    "button": "Entrer en Contact"
   },
   "footer": {
-    "copyright": "© 2025 AiDev Team. Tous droits réservés.",
-    "contactEmail": "Contactez-nous à : contact@davnstech.com"
+    "copyright": "© 2023 AiTeamDev. Tous droits réservés.",
+    "contact": "Contactez-nous à : contact@davnstech.com",
+    "description": "Des solutions de développement IA économiques pour les entreprises modernes"
   }
 }

@@ -1,19 +1,82 @@
 {
-  "nav": {
+  "header": {
+    "logo": "AiTeamDev",
     "home": "Home",
     "about": "About",
     "services": "Services",
-    "team": "Team",
-    "contact": "Contact",
-    "language": "Language"
+    "contact": "Contact"
   },
-  "common": {
-    "getStarted": "Get Started",
-    "readMore": "Read More",
-    "contactUs": "Contact Us"
+  "hero": {
+    "title": "Welcome to AiTeamDev",
+    "subtitle": "Your AI-powered development team for modern businesses",
+    "description": "Budget-friendly solutions from $1-3 with high-quality results",
+    "button": "Get Started"
+  },
+  "services": {
+    "title": "Our Services",
+    "website": {
+      "title": "Website Creation",
+      "description": "Professional corporate websites tailored to your business needs, built with modern technologies and a focus on user experience."
+    },
+    "software": {
+      "title": "Software Development",
+      "description": "Custom software solutions developed by our AI-powered team, designed to streamline your operations and drive growth."
+    },
+    "game": {
+      "title": "Game Development",
+      "description": "Innovative and engaging games designed for modern platforms, from mobile to desktop, with a focus on quality and player satisfaction."
+    },
+    "app": {
+      "title": "App Development",
+      "description": "Native and cross-platform mobile applications built with cutting-edge technologies to engage your users effectively."
+    },
+    "saas": {
+      "title": "SAAS Solutions",
+      "description": "Scalable cloud-based software solutions tailored to your business requirements with subscription-based models."
+    },
+    "ai": {
+      "title": "AI Integration",
+      "description": "Integrate AI capabilities into your existing systems to enhance automation, analytics, and decision-making processes."
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "description1": "AiTeamDev is a cutting-edge development company leveraging the power of AI to deliver innovative solutions. We specialize in creating professional websites, custom software, and engaging games.",
+    "description2": "Founded by a team of AI specialists, we bring together creative design and technical expertise to deliver exceptional results for our clients.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To democratize access to high-quality development services through AI-powered solutions that are both affordable and effective."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To become the leading provider of AI-assisted development services for businesses of all sizes."
+    },
+    "values": {
+      "title": "Our Values",
+      "description": "Innovation, Quality, Efficiency, and Client Satisfaction are at the core of everything we do."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description1": "Have a project in mind? We'd love to hear from you.",
+    "description2": "Our AI team is ready to assist with your development needs within your budget constraints.",
+    "email": {
+      "title": "Email",
+      "description": "contact@davnstech.com"
+    },
+    "inquiry": {
+      "title": "Project Inquiry",
+      "description": "Ready to start your project? Contact us for a free consultation."
+    },
+    "support": {
+      "title": "Support",
+      "description": "Existing clients can reach our support team for assistance."
+    },
+    "button": "Get in Touch"
   },
   "footer": {
-    "copyright": "© 2025 AiDev Team. All rights reserved.",
-    "contactEmail": "Contact us at: contact@davnstech.com"
+    "copyright": "Â© 2023 AiTeamDev. All rights reserved.",
+    "contact": "Contact us at: contact@davnstech.com",
+    "description": "Budget-friendly AI development solutions for modern businesses"
   }
 }
