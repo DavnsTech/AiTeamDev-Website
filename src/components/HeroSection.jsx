@@ -17,7 +17,7 @@ function HeroSection({ setCurrentPage }) {
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
-    // Update page state to contact
+    // Update page state to contact to highlight it in the header if needed
     setCurrentPage('contact');
   };
 
