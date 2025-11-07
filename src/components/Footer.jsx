@@ -5,7 +5,7 @@ function Footer() {
     <footer>
       <div className="container">
         <p>&copy; 2023 AiTeamDev. All rights reserved.</p>
-        <p>Contact us at: contact@davnstech.com</p>
+        <p>Contact us at: <a href="mailto:contact@davnstech.com">contact@davnstech.com</a></p>
       </div>
     </footer>
   );
