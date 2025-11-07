@@ -41,18 +41,10 @@ function App() {
                   <h3>Game Development</h3>
                   <p>Innovative and engaging games designed for modern platforms, from mobile to desktop, with a focus on quality and player satisfaction.</p>
                 </div>
-                <div className="feature-card">
-                  <h3>App Development</h3>
-                  <p>Cross-platform mobile and web applications built with efficiency and scalability in mind.</p>
-                </div>
-                <div className="feature-card">
-                  <h3>SaaS Development</h3>
-                  <p>Robust and scalable Software as a Service solutions to empower your business.</p>
-                </div>
               </div>
             </section>
 
-            {/* Contact section is also part of the home page content */}
+            {/* Contact section is part of the home page content */}
             <section id="contact" className="container section-padding">
               <h2>Contact Us</h2>
               <p>Have a project in mind? We'd love to hear from you.</p>
@@ -65,7 +57,7 @@ function App() {
           <section id="about" className="container section-padding">
             <h2>About Us</h2>
             <p>AiTeamDev is a cutting-edge development company leveraging the power of AI to deliver innovative solutions. We specialize in creating professional websites, custom software, and engaging games.</p>
-            <p>Our mission is to provide high-quality, budget-friendly development services, drawing from collective intelligence and AI-driven improvements to offer unparalleled value to our clients.</p>
+            <p>Our mission is to empower businesses with advanced AI-driven development services, offering cost-effective and high-quality solutions.</p>
           </section>
         );
       case 'services':
@@ -75,23 +67,15 @@ function App() {
             <div className="features">
               <div className="feature-card">
                 <h3>Website Creation</h3>
-                <p>Professional corporate websites tailored to your business needs, built with modern technologies and a focus on user experience.</p>
+                <p>Professional corporate websites tailored to your business needs, built with modern technologies and a focus on user experience. We ensure responsive design and SEO optimization.</p>
               </div>
               <div className="feature-card">
                 <h3>Software Development</h3>
-                <p>Custom software solutions developed by our AI-powered team, designed to streamline your operations and drive growth.</p>
+                <p>Custom software solutions developed by our AI-powered team, designed to streamline your operations and drive growth. From enterprise applications to specialized tools.</p>
               </div>
               <div className="feature-card">
                 <h3>Game Development</h3>
-                <p>Innovative and engaging games designed for modern platforms, from mobile to desktop, with a focus on quality and player satisfaction.</p>
-              </div>
-              <div className="feature-card">
-                <h3>App Development</h3>
-                <p>Cross-platform mobile and web applications built with efficiency and scalability in mind.</p>
-              </div>
-              <div className="feature-card">
-                <h3>SaaS Development</h3>
-                <p>Robust and scalable Software as a Service solutions to empower your business.</p>
+                <p>Innovative and engaging games designed for modern platforms, from mobile to desktop, with a focus on quality and player satisfaction. We bring your game ideas to life.</p>
               </div>
             </div>
           </section>
@@ -100,8 +84,10 @@ function App() {
         return (
           <section id="contact-page" className="container section-padding">
             <h2>Contact Us</h2>
-            <p>Have a project in mind? We'd love to hear from you.</p>
-            <a href="mailto:contact@davnstech.com" className="btn-secondary">Email Us</a>
+            <p>Have a project in mind or want to learn more about our AI-powered development services?</p>
+            <p>Reach out to us via email:</p>
+            <a href="mailto:contact@davnstech.com" className="btn-primary">contact@davnstech.com</a>
+            <p style={{ marginTop: '2rem' }}>Let's build something amazing together!</p>
           </section>
         );
       default:
@@ -114,28 +100,35 @@ function App() {
     }
   };
 
-  // Effect to handle scrolling to the correct section when navigating
+  // Effect to handle initial page load and scrolling if there's a hash in the URL
   useEffect(() => {
-    if (currentPage === 'home') {
-      // If on home, ensure we are at the top
-      window.scrollTo(0, 0);
-    } else {
-      // For other pages, scroll to the corresponding section ID
-      const sectionElement = document.getElementById(currentPage);
-      if (sectionElement) {
-        sectionElement.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        // If the section ID doesn't match directly, try to find it by page name
-        const pageSectionElement = document.getElementById(`${currentPage}-page`);
-        if (pageSectionElement) {
-          pageSectionElement.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          // Fallback: scroll to top if no specific section found
-          window.scrollTo(0, 0);
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const pageName = hash.substring(1); // Remove '#'
+        setCurrentPage(pageName);
+        // Scroll to the element if it exists
+        const element = document.getElementById(pageName === 'home' ? 'home' : `${pageName}-page`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        } else if (pageName === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+      } else {
+        // If no hash, ensure we are on the home page and at the top
+        setCurrentPage('home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-    }
-  }, [currentPage]); // Re-run effect when currentPage changes
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Handle initial hash on mount
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
 
   return (
     <div className="App">
