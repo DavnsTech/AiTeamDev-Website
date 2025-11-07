@@ -1,6 +1,16 @@
 import React from 'react';
 
+/**
+ * Hero section component for the AiTeamDev website.
+ * Displays the main headline, tagline, and a call-to-action button.
+ * @param {object} props - Component props.
+ * @param {function} props.setCurrentPage - Function to update the current page, used here to scroll to contact.
+ */
 function HeroSection({ setCurrentPage }) {
+  /**
+   * Handles the "Get Started" button click.
+   * Scrolls the page to the contact section and updates the current page state.
+   */
   const handleGetStarted = () => {
     // Scroll to contact section
     const contactSection = document.getElementById('contact');

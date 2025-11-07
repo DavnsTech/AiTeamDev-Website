@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Footer component for the AiTeamDev website.
+ * Displays copyright information and contact details.
+ */
 function Footer() {
   return (
     <footer>
