@@ -10,8 +10,8 @@ function Header({ currentPage, setCurrentPage }) {
   return (
     <header>
       <nav className="container">
-        <div 
-          className="logo" 
+        <div
+          className="logo"
           onClick={() => handleNavClick('home')}
           style={{ cursor: 'pointer' }}
         >
@@ -19,32 +19,32 @@ function Header({ currentPage, setCurrentPage }) {
         </div>
         <ul className="nav-links">
           <li>
-            <button 
-              className={currentPage === 'home' ? 'active' : ''} 
+            <button
+              className={currentPage === 'home' ? 'active' : ''}
               onClick={() => handleNavClick('home')}
             >
               Home
             </button>
           </li>
           <li>
-            <button 
-              className={currentPage === 'about' ? 'active' : ''} 
+            <button
+              className={currentPage === 'about' ? 'active' : ''}
               onClick={() => handleNavClick('about')}
             >
               About
             </button>
           </li>
           <li>
-            <button 
-              className={currentPage === 'services' ? 'active' : ''} 
+            <button
+              className={currentPage === 'services' ? 'active' : ''}
               onClick={() => handleNavClick('services')}
             >
               Services
             </button>
           </li>
           <li>
-            <button 
-              className={currentPage === 'contact' ? 'active' : ''} 
+            <button
+              className={currentPage === 'contact' ? 'active' : ''}
               onClick={() => handleNavClick('contact')}
             >
               Contact

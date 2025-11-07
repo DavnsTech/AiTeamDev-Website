@@ -33,6 +33,11 @@ function App() {
               <h2>About Us</h2>
               <p>AiTeamDev is a cutting-edge development company leveraging the power of AI to deliver innovative solutions. We specialize in creating professional websites, custom software, and engaging games.</p>
             </section>
+            <section id="contact" className="container section-padding">
+              <h2>Contact Us</h2>
+              <p>Have a project in mind? We'd love to hear from you.</p>
+              <a href="mailto:contact@davnstech.com" className="btn-secondary">Email Us</a>
+            </section>
           </>
         );
       case 'about':
@@ -71,12 +76,7 @@ function App() {
           </section>
         );
       default:
-        return (
-          <section id="home" className="container section-padding">
-            <h2>Welcome</h2>
-            <p>Page not found.</p>
-          </section>
-        );
+        return null;
     }
   };
 

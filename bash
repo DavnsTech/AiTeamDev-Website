@@ -1,3 +1,2 @@
-npm test
-# or
-yarn test
+    yarn build
+    
