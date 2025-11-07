@@ -16,10 +16,8 @@ function Header({ currentPage, setCurrentPage }) {
    */
   const handleNavClick = (page) => {
     setCurrentPage(page);
-    // Scroll to top when navigating to a new page
-    if (page !== 'home') {
-      window.scrollTo(0, 0);
-    }
+    // Scroll to top when navigating to a new page or back to home
+    window.scrollTo(0, 0);
   };
 
   return (

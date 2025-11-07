@@ -35,4 +35,18 @@ describe('Header Component', () => {
     expect(screen.getByRole('button', { name: /services/i })).toHaveClass('active');
     expect(screen.getByRole('button', { name: /home/i })).not.toHaveClass('active');
   });
+
+  // Test for scrolling to top when navigating
+  test('scrolls to top when navigating', () => {
+    const mockScrollTo = jest.fn();
+    window.scrollTo = mockScrollTo;
+
+    render(<Header currentPage="home" setCurrentPage={() => {}} />);
+    fireEvent.click(screen.getByRole('button', { name: /about/i }));
+
+    expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
+
+    // Restore original function
+    window.scrollTo = jest.fn(); // Or restore from a saved reference if needed
+  });
 });
