@@ -27,7 +27,7 @@ function HeroSection({ setCurrentPage }) {
         <h1>Welcome to AiTeamDev</h1>
         <p>Your AI-powered development team for modern businesses</p>
         <p>Budget-friendly solutions from $1-3 with high-quality results</p>
-        <button className="btn-primary" onClick={handleGetStarted}>
+        <button className="btn-primary" onClick={handleGetStarted} aria-label="Get Started with AiTeamDev">
           Get Started
         </button>
       </div>

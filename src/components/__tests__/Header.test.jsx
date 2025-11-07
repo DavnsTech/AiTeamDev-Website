@@ -2,7 +2,15 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Header from '../Header';
 
+// Mocking window.scrollTo
+const mockScrollTo = jest.fn();
+global.window.scrollTo = mockScrollTo;
+
 describe('Header Component', () => {
+  beforeEach(() => {
+    mockScrollTo.mockClear(); // Clear mock before each test
+  });
+
   test('renders the logo', () => {
     render(<Header currentPage="home" setCurrentPage={() => {}} />);
     expect(screen.getByText('AiTeamDev')).toBeInTheDocument();
@@ -21,6 +29,7 @@ describe('Header Component', () => {
     render(<Header currentPage="about" setCurrentPage={mockSetCurrentPage} />);
     fireEvent.click(screen.getByText('AiTeamDev'));
     expect(mockSetCurrentPage).toHaveBeenCalledWith('home');
+    expect(mockScrollTo).toHaveBeenCalledWith(0, 0); // Check if scroll to top is called
   });
 
   test('calls setCurrentPage when a navigation link is clicked', () => {
@@ -28,25 +37,12 @@ describe('Header Component', () => {
     render(<Header currentPage="home" setCurrentPage={mockSetCurrentPage} />);
     fireEvent.click(screen.getByRole('button', { name: /about/i }));
     expect(mockSetCurrentPage).toHaveBeenCalledWith('about');
+    expect(mockScrollTo).toHaveBeenCalledWith(0, 0); // Check if scroll to top is called
   });
 
   test('applies active class to the current page link', () => {
     render(<Header currentPage="services" setCurrentPage={() => {}} />);
     expect(screen.getByRole('button', { name: /services/i })).toHaveClass('active');
     expect(screen.getByRole('button', { name: /home/i })).not.toHaveClass('active');
-  });
-
-  // Test for scrolling to top when navigating
-  test('scrolls to top when navigating', () => {
-    const mockScrollTo = jest.fn();
-    window.scrollTo = mockScrollTo;
-
-    render(<Header currentPage="home" setCurrentPage={() => {}} />);
-    fireEvent.click(screen.getByRole('button', { name: /about/i }));
-
-    expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
-
-    // Restore original function
-    window.scrollTo = jest.fn(); // Or restore from a saved reference if needed
   });
 });

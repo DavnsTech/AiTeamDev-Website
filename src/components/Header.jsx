@@ -16,7 +16,7 @@ function Header({ currentPage, setCurrentPage }) {
    */
   const handleNavClick = (page) => {
     setCurrentPage(page);
-    // Scroll to top when navigating to a new page or back to home
+    // Scroll to top when navigating to a new page
     window.scrollTo(0, 0);
   };
 
@@ -27,6 +27,7 @@ function Header({ currentPage, setCurrentPage }) {
           className="logo"
           onClick={() => handleNavClick('home')}
           style={{ cursor: 'pointer' }}
+          aria-label="Go to Home"
         >
           AiTeamDev
         </div>
@@ -35,6 +36,7 @@ function Header({ currentPage, setCurrentPage }) {
             <button
               className={currentPage === 'home' ? 'active' : ''}
               onClick={() => handleNavClick('home')}
+              aria-label="Navigate to Home"
             >
               Home
             </button>
@@ -43,6 +45,7 @@ function Header({ currentPage, setCurrentPage }) {
             <button
               className={currentPage === 'about' ? 'active' : ''}
               onClick={() => handleNavClick('about')}
+              aria-label="Navigate to About Us"
             >
               About
             </button>
@@ -51,6 +54,7 @@ function Header({ currentPage, setCurrentPage }) {
             <button
               className={currentPage === 'services' ? 'active' : ''}
               onClick={() => handleNavClick('services')}
+              aria-label="Navigate to Services"
             >
               Services
             </button>
@@ -59,6 +63,7 @@ function Header({ currentPage, setCurrentPage }) {
             <button
               className={currentPage === 'contact' ? 'active' : ''}
               onClick={() => handleNavClick('contact')}
+              aria-label="Navigate to Contact"
             >
               Contact
             </button>
