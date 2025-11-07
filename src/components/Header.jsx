@@ -1,30 +1,19 @@
 import React from 'react';
 
-/**
- * Header component for the AiTeamDev website.
- * Includes the logo and navigation links.
- * Manages the current active page and handles navigation clicks.
- * @param {object} props - Component props.
- * @param {string} props.currentPage - The current active page.
- * @param {function} props.setCurrentPage - Function to update the current page.
- */
 function Header({ currentPage, setCurrentPage }) {
-  /**
-   * Handles click events on navigation links.
-   * Updates the current page state and scrolls the window to the top.
-   * @param {string} page - The page to navigate to.
-   */
   const handleNavClick = (page) => {
     setCurrentPage(page);
-    // Scroll to top when navigating to a new page
+    // Scroll to top when navigating
     window.scrollTo(0, 0);
+    // Update URL hash to reflect the current page for deep linking/refreshing
+    window.location.hash = page === 'home' ? '' : page;
   };
 
   return (
     <header>
       <nav className="container">
-        <div
-          className="logo"
+        <div 
+          className="logo" 
           onClick={() => handleNavClick('home')}
           style={{ cursor: 'pointer' }}
           aria-label="Go to Home"
@@ -33,8 +22,8 @@ function Header({ currentPage, setCurrentPage }) {
         </div>
         <ul className="nav-links">
           <li>
-            <button
-              className={currentPage === 'home' ? 'active' : ''}
+            <button 
+              className={currentPage === 'home' ? 'active' : ''} 
               onClick={() => handleNavClick('home')}
               aria-label="Navigate to Home"
             >
@@ -42,8 +31,8 @@ function Header({ currentPage, setCurrentPage }) {
             </button>
           </li>
           <li>
-            <button
-              className={currentPage === 'about' ? 'active' : ''}
+            <button 
+              className={currentPage === 'about' ? 'active' : ''} 
               onClick={() => handleNavClick('about')}
               aria-label="Navigate to About Us"
             >
@@ -51,8 +40,8 @@ function Header({ currentPage, setCurrentPage }) {
             </button>
           </li>
           <li>
-            <button
-              className={currentPage === 'services' ? 'active' : ''}
+            <button 
+              className={currentPage === 'services' ? 'active' : ''} 
               onClick={() => handleNavClick('services')}
               aria-label="Navigate to Services"
             >
@@ -60,10 +49,10 @@ function Header({ currentPage, setCurrentPage }) {
             </button>
           </li>
           <li>
-            <button
-              className={currentPage === 'contact' ? 'active' : ''}
+            <button 
+              className={currentPage === 'contact' ? 'active' : ''} 
               onClick={() => handleNavClick('contact')}
-              aria-label="Navigate to Contact"
+              aria-label="Navigate to Contact Us"
             >
               Contact
             </button>

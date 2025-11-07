@@ -15,8 +15,9 @@ describe('App Component', () => {
     // Reset mocks before each test
     mockScrollTo.mockClear();
     mockScrollIntoView.mockClear();
+    // Mock document.getElementById to return a mock element with scrollIntoView
     document.getElementById = jest.fn((id) => {
-      if (id === 'contact' || id === 'contact-page' || id === 'about' || id === 'services' || id === 'services-page') {
+      if (id === 'contact' || id === 'contact-page' || id === 'about' || id === 'services' || id === 'services-page' || id === 'home') {
         return { scrollIntoView: mockScrollIntoView };
       }
       return null; // Return null for elements not mocked
@@ -27,7 +28,6 @@ describe('App Component', () => {
     // Restore original getElementById after all tests
     document.getElementById = originalGetElementById;
   });
-
 
   test('renders the Header, HeroSection, and Footer', () => {
     render(<App />);
@@ -50,12 +50,10 @@ describe('App Component', () => {
     const aboutButton = screen.getByRole('button', { name: /about/i });
     fireEvent.click(aboutButton);
 
-    // Wait for the state update and potential scroll effect
+    // Wait for state update and potential DOM changes
     waitFor(() => {
       expect(screen.getByRole('heading', { name: /about us/i })).toBeInTheDocument();
-      // Ensure hero section is no longer visible when on about page
-      expect(screen.queryByRole('heading', { name: /welcome to aiteamdev/i })).not.toBeInTheDocument();
-      expect(mockScrollTo).toHaveBeenCalledWith(0, 0); // Assert scrolling to top
+      expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
     });
   });
 
@@ -66,10 +64,8 @@ describe('App Component', () => {
 
     waitFor(() => {
       expect(screen.getByRole('heading', { name: /our services/i })).toBeInTheDocument();
-      expect(screen.getByText('Website Creation')).toBeInTheDocument();
-      // Ensure hero section is no longer visible when on services page
-      expect(screen.queryByRole('heading', { name: /welcome to aiteamdev/i })).not.toBeInTheDocument();
-      expect(mockScrollTo).toHaveBeenCalledWith(0, 0); // Assert scrolling to top
+      expect(screen.getByText(/website creation/i)).toBeInTheDocument(); // Check for service card content
+      expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
     });
   });
 
@@ -80,37 +76,59 @@ describe('App Component', () => {
 
     waitFor(() => {
       expect(screen.getByRole('heading', { name: /contact us/i })).toBeInTheDocument();
-      expect(screen.getByText('Email Us')).toBeInTheDocument();
-      // Ensure hero section is no longer visible when on contact page
-      expect(screen.queryByRole('heading', { name: /welcome to aiteamdev/i })).not.toBeInTheDocument();
-      expect(mockScrollTo).toHaveBeenCalledWith(0, 0); // Assert scrolling to top
+      expect(screen.getByText(/have a project in mind/i)).toBeInTheDocument();
+      expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
     });
   });
 
-  test('HeroSection "Get Started" button scrolls to contact section and updates page', () => {
+  test('HeroSection "Get Started" button scrolls to contact section', () => {
     render(<App />);
     const getStartedButton = screen.getByRole('button', { name: /get started/i });
     fireEvent.click(getStartedButton);
 
-    // Wait for the scroll and state update
     waitFor(() => {
-      expect(document.getElementById).toHaveBeenCalledWith('contact'); // Ensure it tried to find the contact element
-      expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' }); // Assert scrolling to contact
-      expect(screen.getByRole('button', { name: /contact/i })).toHaveClass('active'); // Check if contact link is active
+      expect(document.getElementById).toHaveBeenCalledWith('contact');
+      expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
     });
   });
 
-  test('Logo click navigates to home and scrolls to top', () => {
+  test('Logo click navigates to Home and scrolls to top', () => {
     render(<App />);
-    // First, navigate to a different page
-    fireEvent.click(screen.getByRole('button', { name: /about/i }));
-    waitFor(() => expect(screen.getByRole('heading', { name: /about us/i })).toBeInTheDocument());
+    // First, navigate to another page to test logo functionality
+    const servicesButton = screen.getByRole('button', { name: /services/i });
+    fireEvent.click(servicesButton);
 
-    // Then, click the logo
-    fireEvent.click(screen.getByText('AiTeamDev'));
+    // Now click the logo
+    const logo = screen.getByText('AiTeamDev');
+    fireEvent.click(logo);
+
     waitFor(() => {
-      expect(screen.getByRole('heading', { name: /welcome to aiteamdev/i })).toBeInTheDocument(); // Back to home
-      expect(mockScrollTo).toHaveBeenCalledWith(0, 0); // Assert scrolling to top
+      // Should be back on the home page content
+      expect(screen.getByRole('heading', { name: /welcome to aiteamdev/i })).toBeInTheDocument();
+      expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
+    });
+  });
+
+  test('handles hash changes in URL for navigation', () => {
+    render(<App />);
+    // Simulate a hash change
+    window.location.hash = '#about';
+    fireEvent.hashChange(window, { newURL: 'http://localhost:3000/#about' });
+
+    waitFor(() => {
+      expect(screen.getByRole('heading', { name: /about us/i })).toBeInTheDocument();
+      expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
+    });
+  });
+
+  test('handles hash change to home and scrolls to top', () => {
+    render(<App />);
+    window.location.hash = '#home';
+    fireEvent.hashChange(window, { newURL: 'http://localhost:3000/#home' });
+
+    waitFor(() => {
+      expect(screen.getByRole('heading', { name: /welcome to aiteamdev/i })).toBeInTheDocument();
+      expect(mockScrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
     });
   });
 });

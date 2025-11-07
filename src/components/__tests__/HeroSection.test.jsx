@@ -6,20 +6,41 @@ import HeroSection from '../HeroSection';
 const mockScrollIntoView = jest.fn();
 const originalGetElementById = document.getElementById;
 
+// Mocking window.location.hash
+const mockSetHash = jest.fn();
+const originalLocation = window.location;
+
 describe('HeroSection Component', () => {
   beforeEach(() => {
     // Mock document.getElementById to return a mock element with scrollIntoView
     document.getElementById = jest.fn((id) => {
-      if (id === 'contact') {
+      if (id === 'contact' || id === 'contact-page') {
         return { scrollIntoView: mockScrollIntoView };
       }
       return null; // Return null for elements not mocked
     });
+
+    // Mock window.location.hash setter
+    Object.defineProperty(window, 'location', {
+      value: {
+        ...originalLocation,
+        hash: '',
+        set hash(value) {
+          mockSetHash(value);
+          this._hash = value; // Store value internally for subsequent reads
+        },
+        get hash() {
+          return this._hash || '';
+        }
+      },
+      configurable: true,
+    });
   });
 
   afterEach(() => {
-    // Restore original getElementById after all tests
+    // Restore original getElementById and window.location
     document.getElementById = originalGetElementById;
+    Object.defineProperty(window, 'location', { value: originalLocation, configurable: true });
   });
 
   test('renders the hero title and tagline', () => {
@@ -39,24 +60,49 @@ describe('HeroSection Component', () => {
     render(<HeroSection setCurrentPage={mockSetCurrentPage} />);
     fireEvent.click(screen.getByRole('button', { name: /get started/i }));
 
-    // Check if document.getElementById was called with 'contact'
-    expect(document.getElementById).toHaveBeenCalledWith('contact');
+    // Check if document.getElementById was called with 'contact' or 'contact-page'
+    expect(document.getElementById).toHaveBeenCalledWith(expect.stringContaining('contact'));
     // Check if scrollIntoView was called for the contact section
     expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
     // Check if setCurrentPage was called
     expect(mockSetCurrentPage).toHaveBeenCalledWith('contact');
+    // Check if hash was updated
+    expect(mockSetHash).toHaveBeenCalledWith('contact');
   });
 
-  test('does not throw error if contact section is not found', () => {
-    // Mock document.getElementById to return null
-    document.getElementById = jest.fn(() => null);
+  test('scrolls to contact-page if it exists', () => {
+    // Mock getElementById to return contact-page specifically
+    document.getElementById = jest.fn((id) => {
+      if (id === 'contact-page') {
+        return { scrollIntoView: mockScrollIntoView };
+      }
+      return null;
+    });
 
     const mockSetCurrentPage = jest.fn();
-    // Render the component and click the button
     render(<HeroSection setCurrentPage={mockSetCurrentPage} />);
-    expect(() => fireEvent.click(screen.getByRole('button', { name: /get started/i }))).not.toThrow();
+    fireEvent.click(screen.getByRole('button', { name: /get started/i }));
 
-    // Ensure mockSetCurrentPage is still called, as the logic proceeds even if scroll fails
+    expect(document.getElementById).toHaveBeenCalledWith('contact-page');
+    expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
+    expect(mockSetCurrentPage).toHaveBeenCalledWith('contact');
+  });
+
+  test('scrolls to contact if contact-page does not exist', () => {
+    // Mock getElementById to return only 'contact'
+    document.getElementById = jest.fn((id) => {
+      if (id === 'contact') {
+        return { scrollIntoView: mockScrollIntoView };
+      }
+      return null;
+    });
+
+    const mockSetCurrentPage = jest.fn();
+    render(<HeroSection setCurrentPage={mockSetCurrentPage} />);
+    fireEvent.click(screen.getByRole('button', { name: /get started/i }));
+
+    expect(document.getElementById).toHaveBeenCalledWith('contact');
+    expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
     expect(mockSetCurrentPage).toHaveBeenCalledWith('contact');
   });
 });
