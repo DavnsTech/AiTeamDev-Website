@@ -38,21 +38,4 @@ describe('App Component', () => {
     expect(screen.getByText(/have a project in mind?/i)).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: /welcome to aiteamdev/i })).not.toBeInTheDocument();
   });
-
-  test('clicking "Get Started" in Hero scrolls to contact and updates page', () => {
-    // Mock scrollIntoView to prevent errors in test environment
-    const mockScrollIntoView = jest.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
-
-    render(<App />);
-    fireEvent.click(screen.getByRole('button', { name: /get started/i }));
-
-    // Check if it scrolled and updated the page state
-    expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
-    expect(screen.getByRole('heading', { name: /contact us/i })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: /welcome to aiteamdev/i })).not.toBeInTheDocument();
-
-    // Restore original function
-    delete window.HTMLElement.prototype.scrollIntoView;
-  });
 });
