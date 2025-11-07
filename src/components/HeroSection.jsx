@@ -2,12 +2,12 @@ import React from 'react';
 
 function HeroSection({ setCurrentPage }) {
   const handleGetStarted = () => {
-    // Programmatically scroll to the contact section
+    // Scroll to contact section
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
-    // Optionally, update the current page state to reflect the view
+    // Update page state to contact
     setCurrentPage('contact');
   };
 
@@ -16,6 +16,7 @@ function HeroSection({ setCurrentPage }) {
       <div className="container">
         <h1>Welcome to AiTeamDev</h1>
         <p>Your AI-powered development team for modern businesses</p>
+        <p>Budget-friendly solutions from $1-3 with high-quality results</p>
         <button className="btn-primary" onClick={handleGetStarted}>
           Get Started
         </button>
